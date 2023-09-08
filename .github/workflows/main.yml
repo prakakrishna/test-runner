@@ -22,5 +22,11 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Install and start httpd
+        run: sudo apt install apache2 && sudo systemctl status apache2
       - name: Get Runner host name
         run: echo ${{ runner. name }}
+      - name: Get IP Address
+        run: curl -s https://api.ipify.org
+      - name: Wait for sometime
+        run: sleep 100
