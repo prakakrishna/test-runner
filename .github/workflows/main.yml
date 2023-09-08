@@ -40,4 +40,4 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Curl
-        run: sleep 20 && echo ${{jobs.job1.outputs.output1}}
+        run: sleep 20 && echo ${{jobs.build.outputs.output1}}
