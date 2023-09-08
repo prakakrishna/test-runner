@@ -32,12 +32,13 @@ jobs:
       - name: Get IP Address
         run: curl -s https://api.ipify.org
       - name: Wait for sometime
-        run: sleep 100
+        run: sleep 100 &
   build-run:
+    needs: build
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Curl
-        run: sleep 20 && echo ${{build.outputs.output1}}
+        run: sleep 20 && echo ${{needs.build.outputs.output1}}
