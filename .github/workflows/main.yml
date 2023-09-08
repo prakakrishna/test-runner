@@ -44,4 +44,4 @@ jobs:
       - name: Curl
         env:
           OUTPUT1: ${{needs.build.outputs.output1}}
-        run: sleep 2 && echo "$OUTPUT1" && curl http://$OUTPUT1
+        run: sleep 20 && echo "$OUTPUT1" && curl http://$OUTPUT1
