@@ -40,4 +40,4 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Curl
-        run: sleep 20 && echo ${{github.event.build.outputs.output1}}
+        run: sleep 20 && echo ${{build.outputs.output1}}
