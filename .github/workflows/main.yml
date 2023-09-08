@@ -25,9 +25,9 @@ jobs:
       - name: Install and start httpd
         run: sudo systemctl start apache2 && sudo systemctl status apache2
       - name: Get Runner host name
-        run: echo ${{ runner.ip }}
+        run: echo ${{ runner }}
       - name: Curl
-        run: curl http://localhost && curl "http://${{ runner.ip }}"
+        run: curl http://localhost
       - name: Get IP Address
         run: curl -s https://api.ipify.org
       - name: Wait for sometime
