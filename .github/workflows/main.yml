@@ -27,21 +27,36 @@ jobs:
         run: sudo systemctl start apache2 && sudo systemctl status apache2
       - name: Get Runner host name
         id: step1
-        run: echo "${{ runner.name }} - `hostname`" && echo test=`hostname` >> "$GITHUB_OUTPUT"
+        run: echo "${{ runner.name }} - `hostname`" > /tmp/hostname && echo test=`hostname` >> "$GITHUB_OUTPUT"
       - name: Curl
         run: curl http://`hostname`
       - name: Get IP Address
         run: curl -s https://api.ipify.org
+      - name: cache
+        uses: actions/cache@v3
+        with:
+          path: /tmp/hostname
+          key: hello-world
+
       - name: Wait for sometime
-        run: sleep 100
+        run: sleep 100 &
   build-run:
     #needs: build
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Curl
-        env:
-          OUTPUT1: ${{needs.build.outputs.output1}}
-        run: sleep 20 && echo "$OUTPUT1" && curl http://$OUTPUT1
+      - name: Restore cached Primes
+        id: cache-primes-restore
+        uses: actions/cache/restore@v3
+        with:
+          path: /tmp/hostname
+          key: hello-world
+      - name: see the hostname
+        run: cat /tmp/hostname
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    #steps:
+    #  - name: Curl
+    #    env:
+    #      OUTPUT1: ${{needs.build.outputs.output1}}
+    #    run: sleep 10 && echo "$OUTPUT1" && curl http://$OUTPUT1
