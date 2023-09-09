@@ -27,7 +27,7 @@ jobs:
         run: sudo systemctl start apache2 && sudo systemctl status apache2
       - name: Get Runner host name
         id: step1
-        run: echo "${{ runner.name }} - `hostname`" > /tmp/hostname && echo test=`hostname` >> "$GITHUB_OUTPUT"
+        run: hostname > /tmp/hostname && echo test=`hostname` >> "$GITHUB_OUTPUT"
       - name: Curl
         run: curl http://`hostname`
       - name: Get IP Address
