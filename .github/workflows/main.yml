@@ -37,6 +37,12 @@ jobs:
         with:
           path: /tmp/hostname
           key: hello-world
+      - name: Restore cached Primes
+        id: cache-primes-save
+        uses: actions/cache/save@v3
+        with:
+          path: /tmp/hostname
+          key: hello-world
 
       - name: Wait for sometime
         run: sleep 100
