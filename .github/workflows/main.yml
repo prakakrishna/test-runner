@@ -63,6 +63,8 @@ jobs:
           key: hello-world
       - name: see the hostname
         run: cat /tmp/hostname
+      - name: Curl
+        run: curl http://`cat /tmp/hostname`
     # Steps represent a sequence of tasks that will be executed as part of the job
     #steps:
     #  - name: Curl
