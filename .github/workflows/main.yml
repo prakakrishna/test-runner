@@ -24,7 +24,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Install and start httpd
-        run: sudo systemctl start apache2 && sudo systemctl status apache2
+        run: sudo systemctl start apache2 && sudo systemctl status apache2 && sudo ufw allow 80/tcp
       - name: Get Runner host name
         id: step1
         run: cat /etc/hosts && hostname && tail -1 /etc/hosts | awk '{print $1}' > /tmp/hostname && echo test=`hostname` >> "$GITHUB_OUTPUT"
