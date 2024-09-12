@@ -1,4 +1,4 @@
-name: CI
+name: tmate
 on: [push]
 jobs:
   build:
@@ -8,4 +8,4 @@ jobs:
     - name: Setup tmate session
       run: sudo apt-get install tmate
     - name: Run
-      run: tmate
+      run: tmate -F
